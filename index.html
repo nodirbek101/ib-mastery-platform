@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IB Mastery — Learn the Models of Investment Banking</title>
+<meta name="description" content="An interactive way to master the six core investment-banking models from Rosenbaum — theory, a real interactive spreadsheet, and a built-in tutor." />
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/dcf.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav dark" id="nav">
+  <a href="index.html" class="brand"><span class="mark">IB</span> Mastery</a>
+  <div class="nav-links">
+    <a href="#models">Models</a>
+    <a href="#how">How it works</a>
+    <a href="#about">Why it works</a>
+    <a href="dcf.html" class="nav-cta">Open DCF Lab →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-glow g1"></div>
+  <div class="hero-glow g2"></div>
+  <!-- self-drawn financial-district skyline -->
+  <svg class="hero-skyline" viewBox="0 0 1440 420" preserveAspectRatio="xMidYEnd slice" aria-hidden="true" style="opacity:.32">
+    <g fill="#cfe0f2">
+      <rect x="60"  y="230" width="58" height="190"/><rect x="128" y="270" width="44" height="150"/>
+      <rect x="182" y="150" width="70" height="270"/><rect x="200" y="120" width="34" height="40"/>
+      <rect x="262" y="300" width="50" height="120"/><rect x="322" y="200" width="60" height="220"/>
+      <rect x="392" y="90"  width="78" height="330"/><rect x="420" y="50" width="22" height="50"/>
+      <rect x="480" y="250" width="46" height="170"/><rect x="536" y="180" width="66" height="240"/>
+      <rect x="612" y="40"  width="64" height="380"/><rect x="636" y="8" width="16" height="40"/>
+      <rect x="686" y="210" width="52" height="210"/><rect x="748" y="140" width="74" height="280"/>
+      <rect x="832" y="260" width="48" height="160"/><rect x="890" y="100" width="80" height="320"/>
+      <rect x="916" y="64" width="28" height="44"/>
+      <rect x="980" y="220" width="54" height="200"/><rect x="1044" y="170" width="66" height="250"/>
+      <rect x="1120" y="120" width="58" height="300"/><rect x="1188" y="240" width="50" height="180"/>
+      <rect x="1248" y="190" width="64" height="230"/><rect x="1322" y="280" width="58" height="140"/>
+    </g>
+    <g fill="#8fb4dc" opacity="0.5">
+      <rect x="392" y="90" width="78" height="330"/><rect x="612" y="40" width="64" height="380"/>
+      <rect x="890" y="100" width="80" height="320"/>
+    </g>
+  </svg>
+
+  <div class="wrap">
+    <div class="hero-tag reveal in"><span class="dot"></span> Built on Rosenbaum · <em style="font-style:italic;color:var(--gold-soft)">Investment Banking</em>, 2nd&nbsp;Ed.</div>
+    <h1 class="display reveal in" data-delay="1">Master the models<br>bankers <em>actually</em> build.</h1>
+    <p class="lead reveal in" data-delay="2">Six core valuation and transaction models — learned the way they should be: rigorous theory, a real interactive spreadsheet you fill in cell-by-cell, and a tutor that tells you what to type and <em>why</em>.</p>
+    <div class="hero-actions reveal in" data-delay="3">
+      <a href="dcf.html" class="btn btn-gold">Start with the DCF <span class="arrow">→</span></a>
+      <a href="#models" class="btn btn-ghost">See all six models</a>
+    </div>
+    <div class="hero-stats reveal in" data-delay="4">
+      <div class="hero-stat"><div class="n mono" data-count="6">6</div><div class="l">Core IB models</div></div>
+      <div class="hero-stat"><div class="n mono" data-count="5">5</div><div class="l">Guided steps per model</div></div>
+      <div class="hero-stat"><div class="n">$6,008.7m</div><div class="l">ValueCo EV — you'll build it</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- MODELS -->
+<section class="section" id="models">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">The curriculum</div>
+      <h2>The six models, one coherent path.</h2>
+      <p class="lead">Each follows the same proven loop — <strong>learn the theory</strong>, then <strong>build the model</strong> in an interactive spreadsheet with a tutor at your side. We begin with the DCF, the foundation of intrinsic valuation.</p>
+    </div>
+
+    <div class="grid-cards">
+      <a class="card live reveal" href="dcf.html" data-delay="1">
+        <div class="idx">01 · INTRINSIC VALUE</div>
+        <h3>Discounted Cash Flow</h3>
+        <p>Project unlevered free cash flow, discount at WACC, add a terminal value — and arrive at enterprise value, equity value, and an implied share price.</p>
+        <div class="foot"><span class="tag-live">Live now</span><span>Theory · Workbook · Lab →</span></div>
+      </a>
+      <a class="card live reveal" href="comps.html" data-delay="2">
+        <div class="idx">02 · MARKET VALUE</div>
+        <h3>Comparable Companies</h3>
+        <p>Spread trading multiples for a peer universe, benchmark the target, and triangulate a "comps" valuation range against the DCF.</p>
+        <div class="foot"><span class="tag-live">Live now</span><span>Theory · Workbook · Lab →</span></div>
+      </a>
+      <div class="card soon reveal" data-delay="3">
+        <div class="idx">03 · MARKET VALUE</div>
+        <h3>Precedent Transactions</h3>
+        <p>Derive valuation from multiples paid in comparable M&A deals — including the control premium.</p>
+        <div class="foot"><span class="tag-soon">Planned</span></div>
+      </div>
+      <div class="card soon reveal" data-delay="4">
+        <div class="idx">04 · SPONSOR RETURNS</div>
+        <h3>LBO Analysis</h3>
+        <p>Model a leveraged buyout end-to-end: sources & uses, a full debt schedule, and the IRR a financial sponsor earns.</p>
+        <div class="foot"><span class="tag-soon">Planned</span></div>
+      </div>
+      <div class="card soon reveal" data-delay="5">
+        <div class="idx">05 · DEAL IMPACT</div>
+        <h3>M&A / Merger Model</h3>
+        <p>Combine acquirer and target, layer in financing and synergies, and test whether the deal is accretive or dilutive to EPS.</p>
+        <div class="foot"><span class="tag-soon">Planned</span></div>
+      </div>
+      <div class="card soon reveal" data-delay="6">
+        <div class="idx">06 · GOING PUBLIC</div>
+        <h3>IPO Valuation</h3>
+        <p>Value a company for its public-market debut and work back to an offering price range.</p>
+        <div class="foot"><span class="tag-soon">Planned</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS (dark band) -->
+<section class="section dark-band" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow" style="color:var(--gold-soft)">How each model works</div>
+      <h2>Read it. Build it. Be coached through it.</h2>
+    </div>
+    <div class="feat">
+      <div class="item reveal" data-delay="1">
+        <div class="num">01 — THEORY</div>
+        <h4>Learn like the book, see it move</h4>
+        <p>Every concept is drawn straight from Rosenbaum's five-step method, with interactive visuals — drag a WACC slider and watch enterprise value respond in real time.</p>
+      </div>
+      <div class="item reveal" data-delay="2">
+        <div class="num">02 — THE LAB</div>
+        <h4>A real spreadsheet, not a quiz</h4>
+        <p>Fill the same model bankers build — blue input cells, live formulas, a working sensitivity. <strong>Guided mode</strong> walks you cell-by-cell; <strong>Free mode</strong> grades you against the answer key.</p>
+      </div>
+      <div class="item reveal" data-delay="3">
+        <div class="num">03 — THE TUTOR</div>
+        <h4>Always knows where you are</h4>
+        <p>A built-in tutor points to the next cell, tells you exactly what to type and why it matters, checks your answers, and explains any concept on demand — no setup, no API key.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY / ABOUT -->
+<section class="section" id="about">
+  <div class="wrap" style="display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;">
+    <div class="reveal">
+      <div class="eyebrow">Why it works</div>
+      <h2 style="font-size:clamp(1.9rem,3.6vw,2.8rem);margin:16px 0 20px;">You don't learn a model<br>by watching one.</h2>
+      <p class="lead" style="margin-bottom:18px;">Investment-banking models are muscle memory. This platform makes you do the reps — type the growth rate, watch EBITDA flow to free cash flow, discount it, and reconcile to a share price — until the logic is yours.</p>
+      <ul style="list-style:none;">
+        <li style="position:relative;padding-left:24px;margin-bottom:11px;color:#25303f;"><span style="position:absolute;left:4px;top:11px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg);"></span> Faithful to the Rosenbaum methodology and ValueCo case</li>
+        <li style="position:relative;padding-left:24px;margin-bottom:11px;color:#25303f;"><span style="position:absolute;left:4px;top:11px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg);"></span> Numbers verified to the cent against the official model</li>
+        <li style="position:relative;padding-left:24px;margin-bottom:11px;color:#25303f;"><span style="position:absolute;left:4px;top:11px;width:7px;height:7px;background:var(--gold);transform:rotate(45deg);"></span> Works entirely offline, in any browser</li>
+      </ul>
+      <a href="dcf.html" class="btn btn-dark" style="margin-top:14px;">Open the DCF Lab <span class="arrow">→</span></a>
+    </div>
+    <div class="reveal" data-delay="2">
+      <!-- candlestick / valuation motif -->
+      <div class="widget" style="margin:0;">
+        <div class="wh">ValueCo · DCF output</div>
+        <h3 style="margin-bottom:18px;">What you'll have built</h3>
+        <div class="valueco-strip" style="grid-template-columns:1fr 1fr;margin:0;">
+          <div><div class="v">$6,008.7</div><div class="l">Enterprise value (m)</div></div>
+          <div><div class="v">$4,758.7</div><div class="l">Implied equity value (m)</div></div>
+          <div><div class="v">$59.45</div><div class="l">Implied share price</div></div>
+          <div><div class="v">68.8%</div><div class="l">Terminal value as % of EV</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="wrap">
+    <div>
+      <a href="index.html" class="brand"><span class="mark">IB</span> Mastery</a>
+      <small>An interactive companion to <em>Investment Banking: Valuation, LBOs, and M&A</em> (Rosenbaum & Pearl). Built for self-study — for Frankfurt School and beyond.</small>
+    </div>
+    <div class="cols">
+      <div>
+        <h5>Models</h5>
+        <a href="dcf.html">Discounted Cash Flow</a>
+        <a href="comps.html">Comparable Companies</a>
+        <a href="#models">Precedent Transactions</a>
+        <a href="#models">LBO · M&A · IPO</a>
+      </div>
+      <div>
+        <h5>The method</h5>
+        <a href="#how">Theory</a>
+        <a href="#how">The Lab</a>
+        <a href="#how">The Tutor</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

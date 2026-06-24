@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discounted Cash Flow — IB Mastery</title>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/dcf.css">
+<link rel="stylesheet" href="css/workbook.css">
+</head>
+<body>
+
+<!-- MODULE BAR -->
+<div class="mod-bar" id="modbar">
+  <div class="row">
+    <div class="mod-title">
+      <a href="index.html" class="back" title="All models" aria-label="Back to all models">←</a>
+      <span>Discounted Cash Flow</span>
+      <span class="chip">CHAPTER 03</span>
+    </div>
+    <div class="mod-tabs" role="tablist">
+      <button id="tab-theory" class="active" role="tab" aria-controls="pane-theory" aria-selected="true" onclick="switchTab('theory')">Theory</button>
+      <button id="tab-workbook" role="tab" aria-controls="pane-workbook" aria-selected="false" onclick="switchTab('workbook')">The Workbook</button>
+      <button id="tab-practice" role="tab" aria-controls="pane-practice" aria-selected="false" onclick="switchTab('practice')">Practice Lab</button>
+    </div>
+    <a href="index.html" class="brand" style="font-size:1rem;color:var(--paper)"><span class="mark">IB</span></a>
+  </div>
+  <div class="mod-progress"><div class="bar" id="progressbar"></div></div>
+</div>
+
+<main class="module">
+
+<!-- ============================= THEORY ============================= -->
+<section class="pane active" id="pane-theory" role="tabpanel" aria-labelledby="tab-theory">
+  <div class="theory">
+    <div class="eyebrow">Part I · Valuation — Chapter 3</div>
+    <h1 class="display" style="font-size:clamp(2.4rem,6vw,4.2rem);margin:14px 0;">Discounted<br>Cash Flow</h1>
+    <p class="lede">A company is worth the <em>present value of the cash it will generate</em>. The DCF makes that idea concrete — and gives you an <em>intrinsic</em> value that doesn't depend on what the market happens to think today.</p>
+
+    <div class="valueco-strip">
+      <div><div class="v">5 yrs</div><div class="l">Explicit forecast</div></div>
+      <div><div class="v">11.0%</div><div class="l">WACC (discount rate)</div></div>
+      <div><div class="v">7.5×</div><div class="l">Terminal exit multiple</div></div>
+      <div><div class="v">$6.0bn</div><div class="l">ValueCo enterprise value</div></div>
+    </div>
+
+    <div class="callout">
+      <div class="h">◆ The big idea</div>
+      <p>Project the target's <strong>unlevered free cash flow</strong> for ~5 years, estimate a <strong>terminal value</strong> for everything after, and discount it all to today at the <strong>WACC</strong>. The sum is <strong>enterprise value</strong>. <span class="cite">Rosenbaum & Pearl, Ch. 3, pp. 109–112</span></p>
+    </div>
+  </div>
+
+  <!-- step rail -->
+  <div class="step-rail">
+    <button type="button" class="step-pill on" onclick="goStep(1)"><div class="k">STEP I</div><div class="t">Study the target</div></button>
+    <button type="button" class="step-pill" onclick="goStep(2)"><div class="k">STEP II</div><div class="t">Project free cash flow</div></button>
+    <button type="button" class="step-pill" onclick="goStep(3)"><div class="k">STEP III</div><div class="t">Calculate WACC</div></button>
+    <button type="button" class="step-pill" onclick="goStep(4)"><div class="k">STEP IV</div><div class="t">Terminal value</div></button>
+    <button type="button" class="step-pill" onclick="goStep(5)"><div class="k">STEP V</div><div class="t">Present value & valuation</div></button>
+  </div>
+
+  <div class="theory">
+
+    <!-- STEP I -->
+    <div class="chapter" id="step1">
+      <div class="kicker"><div class="step-no">I</div><h2>Study the target &amp; its key drivers</h2></div>
+      <p>Every valuation starts with diligence. Before a single number goes into a cell, you study the company and its sector to understand what <strong>actually drives performance</strong> — sales growth, profitability, and free-cash-flow generation. Shortcuts here cause distortions everywhere downstream.</p>
+      <p>For a public company, you mine SEC filings (10-K, 10-Q, 8-K), equity research, earnings-call transcripts, and investor presentations. For a private target, you rely on management materials — in an M&A process, typically a <strong>Confidential Information Memorandum (CIM)</strong>.</p>
+      <div class="callout"><div class="h">◆ Our target — ValueCo</div><p>Throughout, we value <strong>ValueCo Corporation</strong>: 2019 sales of <strong>$3,450m</strong>, a 40% gross margin, and a healthy ~22% EBITDA margin. These are the figures you'll turn into a valuation in the Lab.</p></div>
+    </div>
+
+    <!-- STEP II -->
+    <div class="chapter" id="step2">
+      <div class="kicker"><div class="step-no">II</div><h2>Project free cash flow</h2></div>
+      <p>The core of a DCF is <strong>unlevered free cash flow (FCF)</strong> — the cash a company generates after operating expenses, taxes, capital expenditures and working-capital needs, but <em>before</em> any interest. It's "unlevered" because it's the cash available to <em>all</em> capital providers, independent of how the company is financed.</p>
+
+      <div class="formula">
+        <div class="lbl">Unlevered Free Cash Flow</div>
+        <div class="eq" data-tex="\text{Unlevered FCF} = \text{EBIT}\times(1-\textcolor{#4FD1C5}{t}) + \text{D\&amp;A} - \text{Capex} - \Delta\text{NWC}"></div>
+        <div class="note">Start from EBIT, tax it (giving EBIAT), add back non-cash D&amp;A, subtract the real cash costs of capex and working-capital growth.</div>
+      </div>
+
+      <p>Each line is built from an assumption applied to projected sales:</p>
+      <ul>
+        <li><strong>Sales</strong> grows off a chosen rate each year — ValueCo: 7.5% → 6% → 5% → 4% → 3%, gliding toward a steady state.</li>
+        <li><strong>COGS</strong> at 60% of sales → a 40% gross margin.</li>
+        <li><strong>SG&amp;A</strong> at ~19% of sales. Gross profit − SG&amp;A = <strong>EBITDA</strong>.</li>
+        <li><strong>D&amp;A</strong> at 6% of sales — subtracted to find EBIT, then added back (non-cash).</li>
+        <li><strong>Capex</strong> at 4.5% of sales, and the <strong>increase in net working capital</strong>, both real cash uses.</li>
+      </ul>
+
+      <div class="callout"><div class="h">◆ Why tax EBIT, not pre-tax income?</div><p>Unlevered FCF deliberately ignores interest expense. So we apply tax to <strong>EBIT</strong>, not to earnings after interest. The value of debt's tax shield is captured separately — inside the WACC. <span class="cite">Ch. 3, pp. 110–111, 141–149</span></p></div>
+
+      <!-- interactive: build a year of FCF -->
+      <div class="widget" id="w-fcf">
+        <div class="wh">Try it · one projection year</div>
+        <h3>Watch sales flow down to free cash flow</h3>
+        <div class="slider-row"><label>Sales ($m)</label><input type="range" id="fx-sales" min="3000" max="5000" value="3709" step="10"><div class="out" id="fx-sales-o">3,709</div></div>
+        <div class="slider-row"><label>EBITDA margin</label><input type="range" id="fx-margin" min="15" max="30" value="21" step="0.5"><div class="out" id="fx-margin-o">21.0%</div></div>
+        <div class="slider-row"><label>Tax rate</label><input type="range" id="fx-tax" min="15" max="35" value="25" step="1"><div class="out" id="fx-tax-o">25%</div></div>
+        <div class="result"><span class="rl">Unlevered free cash flow</span><span class="rv mono" id="fx-out">$0</span></div>
+        <p style="font-size:.8rem;color:var(--slate-soft);margin-top:10px;">Approx. FCF — the working-capital drag is simplified here to ~1.3% of sales; the full model derives it from DSO / DIH / DPO.</p>
+      </div>
+    </div>
+
+    <!-- STEP III -->
+    <div class="chapter" id="step3">
+      <div class="kicker"><div class="step-no">III</div><h2>Calculate the WACC</h2></div>
+      <p>The <strong>weighted average cost of capital</strong> is the rate used to discount future cash flows to today. It blends the required returns of debt and equity holders, weighted by the target's capital structure — a single number that reflects the business's <strong>risk</strong>.</p>
+
+      <div class="formula">
+        <div class="lbl">Weighted Average Cost of Capital</div>
+        <div class="eq" data-tex="\text{WACC} = \frac{D}{V}\cdot k_d\cdot(1-t)\;+\;\frac{E}{V}\cdot k_e"></div>
+        <div class="note">k<sub>d</sub> = cost of debt, k<sub>e</sub> = cost of equity (via CAPM), t = tax rate, D/V & E/V = debt and equity weights.</div>
+      </div>
+
+      <div class="formula">
+        <div class="lbl">Cost of Equity — Capital Asset Pricing Model</div>
+        <div class="eq" data-tex="k_e = r_f + \beta\cdot\text{ERP} + \text{Size Premium}"></div>
+        <div class="note">r<sub>f</sub> = risk-free rate, β = levered beta, ERP = equity risk premium. ValueCo: 2.5% + 1.43 × 7.0% + 1.1% ≈ 13.6%.</div>
+      </div>
+
+      <p>Cost of equity comes from the <strong>Capital Asset Pricing Model</strong>: risk-free rate + β × equity risk premium (+ a size premium). For ValueCo the build-up gives a cost of equity of ~13.6% and an after-tax cost of debt of ~4.9%, which at a 30/70 debt/equity mix blends to a <strong>WACC of 11.0%</strong>.</p>
+
+      <div class="callout"><div class="h">◆ Why it matters so much</div><p>WACC discounts <em>every</em> future dollar. A small change moves the valuation a lot — which is exactly why the DCF output is a <strong>range</strong>, sensitised on WACC, not a single number. <span class="cite">Ch. 3, pp. 111, 150–156</span></p></div>
+
+      <!-- interactive: WACC -> EV -->
+      <div class="widget" id="w-wacc">
+        <div class="wh">Try it · the discount rate's power</div>
+        <h3>Move WACC, watch ValueCo's enterprise value</h3>
+        <div class="slider-row"><label>WACC</label><input type="range" id="ww-wacc" min="9" max="13" value="11" step="0.5"><div class="out" id="ww-wacc-o">11.0%</div></div>
+        <div class="slider-row"><label>Exit multiple</label><input type="range" id="ww-exit" min="6" max="9" value="7.5" step="0.5"><div class="out" id="ww-exit-o">7.5×</div></div>
+        <div class="result"><span class="rl">Implied enterprise value</span><span class="rv mono" id="ww-out">$0</span></div>
+      </div>
+    </div>
+
+    <!-- STEP IV -->
+    <div class="chapter" id="step4">
+      <div class="kicker"><div class="step-no">IV</div><h2>Determine terminal value</h2></div>
+      <p>We can't forecast forever, so a <strong>terminal value</strong> captures the company's worth <em>beyond</em> the explicit period — its "going-concern" value. It typically accounts for the <strong>majority</strong> of total DCF value, so the terminal year must reflect a normalised steady state, not a cyclical peak or trough.</p>
+      <p>Two accepted methods:</p>
+      <div class="formula">
+        <div class="lbl">Exit Multiple Method (used here)</div>
+        <div class="eq" data-tex="\text{Terminal Value} = \text{EBITDA}_{\text{terminal}} \times \textcolor{#4FD1C5}{\text{Exit Multiple}}"></div>
+        <div class="note">ValueCo: $929.2m × 7.5× = $6,969m, anchored to where comparable companies trade.</div>
+      </div>
+      <div class="formula">
+        <div class="lbl">Perpetuity Growth Method (the cross-check)</div>
+        <div class="eq" data-tex="\text{Terminal Value} = \frac{\text{FCF}_n\,(1+\textcolor{#4FD1C5}{g})}{\text{WACC}-\textcolor{#4FD1C5}{g}}"></div>
+        <div class="note">Treats terminal-year FCF as a perpetuity growing at g forever. The 7.5× exit multiple implies g ≈ 2.6% — a sensible long-run rate, which validates the assumption.</div>
+      </div>
+      <div class="callout"><div class="h">◆ Always reconcile the two</div><p>Bankers compute terminal value with the exit multiple, then back out the <em>implied perpetuity growth rate</em> to sanity-check it. If the implied g were 6%, the multiple would be too aggressive. <span class="cite">Ch. 3, pp. 111, 157–160</span></p></div>
+    </div>
+
+    <!-- STEP V -->
+    <div class="chapter" id="step5">
+      <div class="kicker"><div class="step-no">V</div><h2>Present value &amp; determine valuation</h2></div>
+      <p>Finally, discount each year's FCF and the terminal value back to today using the <strong>discount factor</strong>, and sum them to get <strong>enterprise value</strong>.</p>
+      <div class="formula">
+        <div class="lbl">Discount factor &amp; present value</div>
+        <div class="eq" data-tex="\text{Discount Factor}=\frac{1}{(1+\text{WACC})^{n}}\qquad \text{PV}=\text{FCF}_n\times\text{Discount Factor}"></div>
+        <div class="note">With the <strong>mid-year convention</strong>, cash is assumed to arrive mid-period, so n = 0.5, 1.5, 2.5 … — cash comes a little sooner, lifting value slightly.</div>
+      </div>
+
+      <!-- discount visual -->
+      <div class="widget">
+        <div class="wh">ValueCo · present value of each cash flow</div>
+        <h3>Today's value of tomorrow's cash</h3>
+        <div class="bars" id="pvbars"></div>
+        <div class="bars-x"><div>2020</div><div>2021</div><div>2022</div><div>2023</div><div>2024</div><div>Term.</div></div>
+        <p style="font-size:.84rem;color:var(--slate-soft);margin-top:10px;">Gold = PV of each year's free cash flow · Teal = PV of the terminal value (the majority of the total).</p>
+      </div>
+
+      <p>From enterprise value we bridge to <strong>equity value</strong> — subtract net debt (and preferred/minority interest), add cash — then divide by fully-diluted shares for an <strong>implied share price</strong>.</p>
+      <div class="formula">
+        <div class="lbl">Enterprise value → equity → per share</div>
+        <div class="eq" data-tex="\begin{aligned}\text{Equity Value}&=\text{EV}-\text{Total Debt}-\text{Preferred}-\text{Minority}+\textcolor{#4FD1C5}{\text{Cash}}\\\text{Share Price}&=\frac{\text{Equity Value}}{\text{Fully Diluted Shares}}\end{aligned}"></div>
+      </div>
+      <div class="valueco-strip">
+        <div><div class="v">$6,008.7</div><div class="l">Enterprise value (m)</div></div>
+        <div><div class="v">$4,758.7</div><div class="l">Equity value (m)</div></div>
+        <div><div class="v">80.05</div><div class="l">Diluted shares (m)</div></div>
+        <div><div class="v">$59.45</div><div class="l">Implied share price</div></div>
+      </div>
+
+      <div style="text-align:center;margin-top:50px;">
+        <p class="lead" style="margin-bottom:20px;">You've seen the whole method. Now <strong>build it yourself.</strong></p>
+        <button class="btn btn-gold" onclick="switchTab('practice')">Enter the Practice Lab <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================= THE WORKBOOK ============================= -->
+<section class="pane" id="pane-workbook" role="tabpanel" aria-labelledby="tab-workbook">
+  <div class="wb">
+    <div class="wb-main">
+      <div class="wb-intro">
+        <div class="wh">The real model</div>
+        <h3>This isn't one sheet — it's five connected tabs</h3>
+        <p>The actual Rosenbaum DCF file is a <strong>workbook</strong>: assumption tabs feed a working-capital tab and a cost-of-capital tab, which all flow into the <strong>DCF</strong> output. Below is the map. Pick a tab, then <strong>click any cell</strong> to see its real formula and a plain-English explanation — every line.</p>
+        <div class="wb-map" id="wb-map"></div>
+      </div>
+
+      <div class="wb-subnav" id="wb-subnav"></div>
+
+      <div class="wb-sheet-head" id="wb-sheet-head"></div>
+
+      <div class="wb-toolbar">
+        <div class="wb-legend">
+          <span><i class="lg-input"></i> Input (you type)</span>
+          <span><i class="lg-formula"></i> Formula</span>
+          <span><i class="lg-link"></i> Link to another tab</span>
+          <span><i class="lg-dt"></i> Data-table output</span>
+        </div>
+        <div class="wb-toggles">
+          <button onclick="toggleWbFormulas(this)">Show formulas</button>
+          <button onclick="toggleWbHighlight(this)">Highlight inputs</button>
+        </div>
+      </div>
+
+      <div class="wb-grid-wrap" id="wb-grid" tabindex="0" role="region" aria-label="Spreadsheet (scrollable)"></div>
+
+      <div class="wb-lines" id="wb-lines"></div>
+    </div>
+
+    <aside class="wb-explain" id="wb-explain"></aside>
+  </div>
+</section>
+
+<!-- ============================= PRACTICE ============================= -->
+<section class="pane" id="pane-practice" role="tabpanel" aria-labelledby="tab-practice">
+  <div class="lab">
+    <!-- main -->
+    <div class="lab-main">
+
+      <!-- How this works -->
+      <div class="lab-intro">
+        <div class="wh">The assignment</div>
+        <h3>Build ValueCo's DCF — from assumptions to share price</h3>
+        <p>You've been hired to value <strong>ValueCo Corporation</strong>. You're given its financials and a set of base-case assumptions — all in the <strong>Case Brief</strong> below. Your job is to type each number into the matching <strong style="color:var(--blue-input)">blue cell</strong>. The black cells (EBITDA, free cash flow, enterprise value…) calculate automatically as you type, exactly like Excel.</p>
+        <div class="li-steps">
+          <div><span>1</span> Read the <strong>Case Brief</strong> — that's your source data (the "questions" are: where does each number go?).</div>
+          <div><span>2</span> Stay in <strong>Guided</strong> mode: the gold tutor bubble points at each blue cell and tells you what to type &amp; why.</div>
+          <div><span>3</span> Watch the model build. Get all 14 cells right and your enterprise value lands on <strong>$6,008.7m</strong>.</div>
+        </div>
+        <button class="btn btn-gold" onclick="startGuided()" style="margin-top:6px;">▶ Start the guided walkthrough</button>
+      </div>
+
+      <!-- Case Brief / Data Room -->
+      <details class="case-brief" id="casebrief" open>
+        <summary><span class="cb-ico">📋</span> Case Brief — the data you've been given <span class="cb-hint">(click to collapse)</span></summary>
+        <div class="cb-body">
+          <p class="cb-note">These are ValueCo's actuals plus the agreed <strong>base-case</strong> operating scenario. Enter each value into the blue cell it names. In Guided mode the tutor walks you through them in order.</p>
+
+          <div class="cb-block">
+            <div class="cb-title">① Sales growth — base operating scenario <span>→ "Sales growth" row · Step II</span></div>
+            <div class="cb-grid g5">
+              <div><div class="k">2020E</div><div class="v">7.5%</div></div>
+              <div><div class="k">2021E</div><div class="v">6.0%</div></div>
+              <div><div class="k">2022E</div><div class="v">5.0%</div></div>
+              <div><div class="k">2023E</div><div class="v">4.0%</div></div>
+              <div><div class="k">2024E</div><div class="v">3.0%</div></div>
+            </div>
+            <p class="cb-src">Growth decelerates toward a 3% steady state. (2019 sales were $3,450m — already filled in for you as the starting point.)</p>
+          </div>
+
+          <div class="cb-block">
+            <div class="cb-title">② Cost &amp; margin drivers — % of sales, held flat <span>→ the four "% of sales" rows + tax · Step II</span></div>
+            <div class="cb-grid g5">
+              <div><div class="k">COGS</div><div class="v">60.0%</div></div>
+              <div><div class="k">SG&amp;A</div><div class="v">19.0%</div></div>
+              <div><div class="k">D&amp;A</div><div class="v">6.0%</div></div>
+              <div><div class="k">Capex</div><div class="v">4.5%</div></div>
+              <div><div class="k">Tax rate</div><div class="v">25.0%</div></div>
+            </div>
+            <p class="cb-src">COGS 60% → 40% gross margin. SG&amp;A from 2019 actual ($655m ÷ $3,450m ≈ 19%). Tax is applied to EBIT.</p>
+          </div>
+
+          <div class="cb-block">
+            <div class="cb-title">③ Discount rate &amp; terminal value <span>→ "WACC" + "Exit multiple" · Steps III–IV</span></div>
+            <div class="cb-grid g2">
+              <div><div class="k">WACC (from the WACC build-up)</div><div class="v">11.0%</div></div>
+              <div><div class="k">Exit multiple (from comparable companies)</div><div class="v">7.5×</div></div>
+            </div>
+          </div>
+
+          <div class="cb-block">
+            <div class="cb-title">④ Equity bridge — from the balance sheet <span>→ "Total debt" + "Cash" · Step V</span></div>
+            <div class="cb-grid g2">
+              <div><div class="k">Total debt</div><div class="v">$1,500m</div></div>
+              <div><div class="k">Cash &amp; equivalents</div><div class="v">$250m</div></div>
+            </div>
+            <p class="cb-src">Equity value = Enterprise value − Total debt + Cash, then ÷ 80.05m diluted shares for the share price.</p>
+          </div>
+        </div>
+      </details>
+
+      <div class="lab-toolbar">
+        <div class="mode-toggle">
+          <button id="m-guided" class="active" onclick="setMode('guided')">Guided</button>
+          <button id="m-free" onclick="setMode('free')">Free build</button>
+        </div>
+        <div class="lab-actions">
+          <button class="mini-btn" id="btn-check" onclick="checkAll()">✓ Check my answers</button>
+          <button class="mini-btn" onclick="resetSheet()">↺ Reset</button>
+          <button class="mini-btn gold" id="btn-reveal" onclick="revealAll()">Reveal solution</button>
+        </div>
+      </div>
+
+      <div class="complete-banner" id="complete">
+        <div style="font-size:2rem;">✓</div>
+        <div><h4>Model complete — and it ties out.</h4><p id="complete-sub">You built ValueCo's DCF to an enterprise value of $6,008.7m. That matches the official model to the dollar.</p></div>
+      </div>
+
+      <div class="scorecard" id="scorecard">
+        <div class="score-pill"><div class="l">Enterprise value</div><div class="v mono" id="sc-ev">$0.0</div></div>
+        <div class="score-pill"><div class="l">Equity value</div><div class="v mono" id="sc-eq">$0.0</div></div>
+        <div class="score-pill"><div class="l">Implied share price</div><div class="v mono" id="sc-px">$0.00</div></div>
+        <div class="score-pill"><div class="l">Cells correct</div><div class="v mono" id="sc-cells">0 / 14</div></div>
+      </div>
+
+      <div class="sheet-wrap" tabindex="0" role="region" aria-label="Spreadsheet (scrollable)"><div id="sheet"></div></div>
+      <p style="font-size:.8rem;color:var(--slate-soft);margin-top:14px;">
+        <span style="display:inline-block;width:11px;height:11px;background:rgba(31,111,235,.12);box-shadow:inset 0 0 0 1px rgba(31,111,235,.4);vertical-align:middle;border-radius:2px;"></span>
+        Blue cells are inputs — your job. Black cells calculate automatically, exactly like Excel. Assumption drivers in <em>italics</em> are given.
+      </p>
+    </div>
+
+    <!-- tutor -->
+    <aside class="tutor">
+      <div class="tutor-head">
+        <div class="tutor-avatar">AI</div>
+        <div class="ti"><h5>Your DCF Tutor</h5><span>Always knows where you are</span></div>
+      </div>
+      <div class="tutor-log" id="tutorlog"></div>
+      <div class="tutor-chips" id="tutorchips"></div>
+      <div class="tutor-input">
+        <input id="tutorinput" placeholder="Ask anything — e.g. why WACC?" autocomplete="off">
+        <button onclick="sendTutor()" title="Send" aria-label="Send message">→</button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</main>
+
+<!-- coach bubble (guided mode) -->
+<div class="coach" id="coach"></div>
+
+<script src="assets/katex/katex.min.js"></script>
+<script src="js/workbook-data.js"></script>
+<script src="js/workbook-notes.js"></script>
+<script src="js/workbook.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/model.js"></script>
+<script src="js/tutor.js"></script>
+<script src="js/grid.js"></script>
+<script src="js/theory.js"></script>
+</body>
+</html>

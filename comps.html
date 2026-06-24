@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Comparable Companies — IB Mastery</title>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/dcf.css">
+<link rel="stylesheet" href="css/workbook.css">
+</head>
+<body>
+
+<div class="mod-bar" id="modbar">
+  <div class="row">
+    <div class="mod-title">
+      <a href="index.html" class="back" title="All models" aria-label="Back to all models">←</a>
+      <span>Comparable Companies</span>
+      <span class="chip">CHAPTER 01</span>
+    </div>
+    <div class="mod-tabs" role="tablist">
+      <button id="tab-theory" class="active" role="tab" aria-controls="pane-theory" aria-selected="true" onclick="switchTab('theory')">Theory</button>
+      <button id="tab-workbook" role="tab" aria-controls="pane-workbook" aria-selected="false" onclick="switchTab('workbook')">The Workbook</button>
+      <button id="tab-practice" role="tab" aria-controls="pane-practice" aria-selected="false" onclick="switchTab('practice')">Practice Lab</button>
+    </div>
+    <a href="index.html" class="brand" style="font-size:1rem;color:var(--paper)"><span class="mark">IB</span></a>
+  </div>
+  <div class="mod-progress"><div class="bar" id="progressbar"></div></div>
+</div>
+
+<main class="module">
+
+<!-- ============================= THEORY ============================= -->
+<section class="pane active" id="pane-theory" role="tabpanel" aria-labelledby="tab-theory">
+  <div class="theory">
+    <div class="eyebrow">Part I · Valuation — Chapter 1</div>
+    <h1 class="display" style="font-size:clamp(2.4rem,6vw,4.2rem);margin:14px 0;">Comparable<br>Companies</h1>
+    <p class="lede">A company is worth what the market pays for <em>similar</em> companies. Comps derive value from the trading <em>multiples</em> of a peer group — a fast, market-grounded read that complements the DCF's intrinsic view.</p>
+
+    <div class="valueco-strip">
+      <div><div class="v">15</div><div class="l">Peer companies</div></div>
+      <div><div class="v">7.3×</div><div class="l">Median EV/EBITDA</div></div>
+      <div><div class="v">$5.1bn</div><div class="l">Implied EV for ValueCo</div></div>
+      <div><div class="v">EV/EBITDA</div><div class="l">The workhorse multiple</div></div>
+    </div>
+
+    <div class="callout">
+      <div class="h">◆ The big idea</div>
+      <p>Pick a set of comparable public companies, <strong>spread</strong> their multiples (EV/EBITDA, P/E, …), then apply a chosen multiple to the target's own metric to get an <strong>implied value</strong>. <span class="cite">Rosenbaum &amp; Pearl, Ch. 1</span></p>
+    </div>
+  </div>
+
+  <div class="step-rail">
+    <button type="button" class="step-pill on" onclick="goStep(1)"><div class="k">STEP I</div><div class="t">Select the universe</div></button>
+    <button type="button" class="step-pill" onclick="goStep(2)"><div class="k">STEP II</div><div class="t">Locate information</div></button>
+    <button type="button" class="step-pill" onclick="goStep(3)"><div class="k">STEP III</div><div class="t">Spread multiples</div></button>
+    <button type="button" class="step-pill" onclick="goStep(4)"><div class="k">STEP IV</div><div class="t">Benchmark</div></button>
+    <button type="button" class="step-pill" onclick="goStep(5)"><div class="k">STEP V</div><div class="t">Determine valuation</div></button>
+  </div>
+
+  <div class="theory">
+
+    <div class="chapter" id="step1">
+      <div class="kicker"><div class="step-no">I</div><h2>Select the universe of comparable companies</h2></div>
+      <p>The foundation of comps is a well-chosen peer set. Strong comparables share both a <strong>business profile</strong> (sector, products, end-markets, distribution) and a <strong>financial profile</strong> (size, growth, margins, returns). The closer the match, the more meaningful the multiple.</p>
+      <p>You build the list from competitors named in filings, the peer groups equity-research analysts use, and screens by industry code and size. For ValueCo we land on 15 specialty/commodity chemical companies, grouped into tiers.</p>
+      <div class="callout"><div class="h">◆ Garbage in, garbage out</div><p>A sloppy universe is the most common way to get comps wrong. A pure-play peer in the same niche is worth more than five loosely-related names. <span class="cite">Ch. 1, Step I</span></p></div>
+    </div>
+
+    <div class="chapter" id="step2">
+      <div class="kicker"><div class="step-no">II</div><h2>Locate the necessary financial information</h2></div>
+      <p>For each company you gather the data needed to compute multiples: the latest <strong>SEC filings</strong> (10-K, 10-Q, 8-K), <strong>consensus estimates</strong> for forward years, the current <strong>share price</strong> and share count, and market data. Public companies make this straightforward; the discipline is consistency.</p>
+      <p>A key step is building a <strong>last-twelve-months (LTM)</strong> figure so every company is measured over the same trailing year regardless of its fiscal year-end:</p>
+      <div class="formula"><div class="lbl">Calendarisation — LTM</div>
+        <div class="eq" data-tex="\text{LTM} = \text{Current Fiscal Year} + \text{Current Stub} - \text{Prior Stub}"></div>
+        <div class="note">The "stub" is the partial-year period; adding the current stub and removing the prior stub rolls the figure forward to today.</div></div>
+    </div>
+
+    <div class="chapter" id="step3">
+      <div class="kicker"><div class="step-no">III</div><h2>Spread key statistics, ratios &amp; trading multiples</h2></div>
+      <p>"Spreading" means computing each company's value and multiples on a consistent basis. First, two value measures:</p>
+      <div class="formula"><div class="lbl">Equity value &amp; enterprise value</div>
+        <div class="eq" data-tex="\text{Equity Value} = \text{Share Price} \times \text{Fully Diluted Shares}"></div>
+        <div class="eq" data-tex="\text{Enterprise Value} = \text{Equity} + \text{Debt} + \text{Preferred} + \text{NCI} - \textcolor{#4FD1C5}{\text{Cash}}"></div>
+        <div class="note">Enterprise value is capital-structure-neutral — the value of the operating business to all investors.</div></div>
+      <p>Then the multiples. <strong>EV multiples</strong> use whole-firm metrics; <strong>equity multiples</strong> use per-share metrics:</p>
+      <div class="formula"><div class="lbl">The core trading multiples</div>
+        <div class="eq" data-tex="\frac{\text{EV}}{\text{EBITDA}}\qquad \frac{\text{EV}}{\text{EBIT}}\qquad \frac{\text{EV}}{\text{Sales}}\qquad \text{P/E}=\frac{\text{Price}}{\text{EPS}}"></div>
+        <div class="note">EV/EBITDA is the workhorse — neutral to capital structure and depreciation policy. Reported figures are first <em>adjusted</em> for non-recurring items so multiples reflect ongoing performance.</div></div>
+      <div class="callout"><div class="h">◆ Match the numerator to the denominator</div><p>EV pairs with EBITDA, EBIT and Sales (pre-financing). Equity value (and price) pairs with net income and EPS (post-financing). Mixing them is a classic error. <span class="cite">Ch. 1, Step III</span></p></div>
+    </div>
+
+    <div class="chapter" id="step4">
+      <div class="kicker"><div class="step-no">IV</div><h2>Benchmark the comparable companies</h2></div>
+      <p>With every company spread, you lay them side by side and study the dispersion — growth, margins, returns (ROIC/ROE), leverage and coverage. This tells you <strong>which</strong> peers are the truest comparables and <strong>where</strong> the target should sit within the range.</p>
+      <p>Bankers usually lead with the <strong>median</strong> (robust to outliers) and also show mean, high and low to frame a range. A target that is higher-growth and lower-levered than the median peer deserves a multiple <em>above</em> the median.</p>
+      <div class="callout"><div class="h">◆ Judgement, not just arithmetic</div><p>Benchmarking is where the analyst earns their keep — deciding which names to weight and what multiple the target merits. <span class="cite">Ch. 1, Step IV</span></p></div>
+    </div>
+
+    <div class="chapter" id="step5">
+      <div class="kicker"><div class="step-no">V</div><h2>Determine valuation</h2></div>
+      <p>Finally, apply the chosen multiple to the target's own metric to get an implied value, and bridge from enterprise to equity:</p>
+      <div class="formula"><div class="lbl">Implied valuation</div>
+        <div class="eq" data-tex="\text{Implied EV} = \textcolor{#4FD1C5}{\text{Multiple}} \times \text{Target Metric}"></div>
+        <div class="eq" data-tex="\text{Implied Equity} = \text{Implied EV} - \text{Net Debt}"></div>
+        <div class="note">For ValueCo: 7.3× × $700m LTM EBITDA ≈ $5.1bn EV; less $1,317m net debt ≈ $3.8bn equity. The low/high multiples give a range.</div></div>
+
+      <div class="widget" id="cw">
+        <div class="wh">Try it · multiple → value</div>
+        <h4>Apply an EV/EBITDA multiple to ValueCo's $700m EBITDA</h4>
+        <div class="slider-row"><label>EV / EBITDA</label><input type="range" id="cw-mult" min="5" max="10" value="7.3" step="0.1"><div class="out" id="cw-mult-o">7.3×</div></div>
+        <div class="result"><span class="rl">Implied enterprise value</span><span class="rv mono" id="cw-ev">$0</span></div>
+        <div class="result" style="margin-top:10px;"><span class="rl">Implied equity value (− $1,317m net debt)</span><span class="rv mono" id="cw-eq" style="font-size:1.5rem;">$0</span></div>
+      </div>
+
+      <div class="callout"><div class="h">◆ Triangulate</div><p>Comps imply ~<strong>$5.1bn</strong> EV for ValueCo (range $4.2–6.3bn); the DCF gave <strong>$6.0bn</strong>. When intrinsic and relative methods bracket each other, you have a defensible range. <span class="cite">Ch. 1, Step V</span></p></div>
+
+      <div style="text-align:center;margin-top:50px;">
+        <p class="lead" style="margin-bottom:20px;">Now <strong>value ValueCo yourself.</strong></p>
+        <button class="btn btn-gold" onclick="switchTab('practice')">Enter the Practice Lab <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= THE WORKBOOK ============================= -->
+<section class="pane" id="pane-workbook" role="tabpanel" aria-labelledby="tab-workbook">
+  <div class="wb">
+    <div class="wb-main">
+      <div class="wb-intro">
+        <div class="wh">The real model</div>
+        <h3>The comps workbook, tab by tab</h3>
+        <p>The actual Rosenbaum comps file flows: a <strong>List</strong> of comparable companies → a detailed <strong>Spread</strong> page for each → <strong>Benchmarking</strong> → the <strong>Output</strong> summary. Pick a tab, then <strong>click any cell</strong> to see its real formula and a plain-English explanation — every line.</p>
+        <div class="wb-map" id="wb-map"></div>
+      </div>
+      <div class="wb-subnav" id="wb-subnav"></div>
+      <div class="wb-sheet-head" id="wb-sheet-head"></div>
+      <div class="wb-toolbar">
+        <div class="wb-legend">
+          <span><i class="lg-input"></i> Input (keyed in)</span>
+          <span><i class="lg-formula"></i> Formula</span>
+          <span><i class="lg-link"></i> Link to another tab</span>
+        </div>
+        <div class="wb-toggles">
+          <button onclick="toggleWbFormulas(this)">Show formulas</button>
+          <button onclick="toggleWbHighlight(this)">Highlight inputs</button>
+        </div>
+      </div>
+      <div class="wb-grid-wrap" id="wb-grid" tabindex="0" role="region" aria-label="Spreadsheet (scrollable)"></div>
+      <div class="wb-lines" id="wb-lines"></div>
+    </div>
+    <aside class="wb-explain" id="wb-explain"></aside>
+  </div>
+</section>
+
+<!-- ============================= PRACTICE ============================= -->
+<section class="pane" id="pane-practice" role="tabpanel" aria-labelledby="tab-practice">
+  <div class="lab">
+    <div class="lab-main">
+      <div class="lab-intro">
+        <div class="wh">The assignment</div>
+        <h3>Value ValueCo with the comparable companies</h3>
+        <p>You've spread the peer group and have their multiples. Now apply them to <strong>ValueCo</strong> to get an implied valuation — and compare it with the DCF. Type each number from the <strong>Case Brief</strong> into its <strong style="color:var(--blue-input)">blue cell</strong>; the black cells compute automatically.</p>
+        <div class="li-steps">
+          <div><span>1</span> Read the <strong>Case Brief</strong> — ValueCo's metrics and the comp multiples.</div>
+          <div><span>2</span> Stay in <strong>Guided</strong> mode; the tutor explains each cell.</div>
+          <div><span>3</span> See the implied EV land near <strong>$5.1bn</strong> — just below the DCF's $6.0bn.</div>
+        </div>
+        <button class="btn btn-gold" onclick="startGuided()" style="margin-top:6px;">▶ Start the guided walkthrough</button>
+      </div>
+
+      <details class="case-brief" id="casebrief" open>
+        <summary><span class="cb-ico">📋</span> Case Brief — the data you've been given <span class="cb-hint">(click to collapse)</span></summary>
+        <div class="cb-body">
+          <p class="cb-note">ValueCo's LTM metrics, its net-debt items, and the comparable companies' benchmark multiples (from the Output tab). Enter each into its blue cell.</p>
+          <div class="cb-block">
+            <div class="cb-title">① ValueCo — LTM metrics <span>→ §① · $ in millions</span></div>
+            <div class="cb-grid g5">
+              <div><div class="k">LTM EBITDA</div><div class="v">700</div></div>
+              <div><div class="k">LTM EBIT</div><div class="v">500</div></div>
+              <div><div class="k">LTM Sales</div><div class="v">3,385</div></div>
+              <div><div class="k">Total debt</div><div class="v">1,500</div></div>
+              <div><div class="k">Cash</div><div class="v">183</div></div>
+            </div>
+          </div>
+          <div class="cb-block">
+            <div class="cb-title">② Comp benchmark multiples <span>→ §③ &amp; §⑥ · from Output</span></div>
+            <div class="cb-grid g5">
+              <div><div class="k">EV/EBITDA median</div><div class="v">7.3×</div></div>
+              <div><div class="k">EV/EBIT median</div><div class="v">9.9×</div></div>
+              <div><div class="k">EV/Sales median</div><div class="v">1.1×</div></div>
+              <div><div class="k">EV/EBITDA low</div><div class="v">6.0×</div></div>
+              <div><div class="k">EV/EBITDA high</div><div class="v">9.0×</div></div>
+            </div>
+            <p class="cb-src">Apply a multiple to the matching metric: implied EV = multiple × metric. Then equity = EV − net debt (1,500 − 183 = 1,317).</p>
+          </div>
+        </div>
+      </details>
+
+      <div class="lab-toolbar">
+        <div class="mode-toggle">
+          <button id="m-guided" class="active" onclick="setMode('guided')">Guided</button>
+          <button id="m-free" onclick="setMode('free')">Free build</button>
+        </div>
+        <div class="lab-actions">
+          <button class="mini-btn" onclick="checkAll()">✓ Check my answers</button>
+          <button class="mini-btn" onclick="resetSheet()">↺ Reset</button>
+          <button class="mini-btn gold" onclick="revealAll()">Reveal solution</button>
+        </div>
+      </div>
+
+      <div class="complete-banner" id="complete">
+        <div style="font-size:2rem;">✓</div>
+        <div><h4>Valued — and it triangulates with the DCF.</h4><p id="complete-sub"></p></div>
+      </div>
+
+      <div class="scorecard" id="scorecard">
+        <div class="score-pill"><div class="l">Implied EV (EV/EBITDA)</div><div class="v mono" id="sc-ev">$0</div></div>
+        <div class="score-pill"><div class="l">Implied equity value</div><div class="v mono" id="sc-eq">$0</div></div>
+        <div class="score-pill"><div class="l">EV range</div><div class="v mono" id="sc-range" style="font-size:1rem;">—</div></div>
+        <div class="score-pill"><div class="l">Cells correct</div><div class="v mono" id="sc-cells">0 / 10</div></div>
+      </div>
+
+      <div class="sheet-wrap" style="max-width:600px;" tabindex="0" role="region" aria-label="Spreadsheet (scrollable)"><div id="sheet"></div></div>
+      <p style="font-size:.8rem;color:var(--slate-soft);margin-top:14px;">
+        <span style="display:inline-block;width:11px;height:11px;background:rgba(31,111,235,.12);box-shadow:inset 0 0 0 1px rgba(31,111,235,.4);vertical-align:middle;border-radius:2px;"></span>
+        Blue cells are inputs — your job. Black cells calculate automatically.
+      </p>
+    </div>
+
+    <aside class="tutor">
+      <div class="tutor-head">
+        <div class="tutor-avatar">AI</div>
+        <div class="ti"><h5>Your Comps Tutor</h5><span>Always knows where you are</span></div>
+      </div>
+      <div class="tutor-log" id="tutorlog"></div>
+      <div class="tutor-chips" id="tutorchips"></div>
+      <div class="tutor-input">
+        <input id="tutorinput" placeholder="Ask anything — e.g. why EV/EBITDA?" autocomplete="off">
+        <button onclick="sendTutor()" title="Send" aria-label="Send message">→</button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</main>
+
+<div class="coach" id="coach"></div>
+
+<script src="assets/katex/katex.min.js"></script>
+<script>
+  var WB_CONFIG = {
+    defaultTab: 'Output',
+    tabs: [
+      { id: 'List',   sub: 'universe' },
+      { id: 'Spread', sub: 'one company' },
+      { id: 'Bench',  sub: 'benchmarking' },
+      { id: 'Output', sub: 'summary' },
+    ],
+    map: [
+      { id: 'List',   nk: 'List',   nt: 'The universe of comparables', nd: 'Pick similar companies →' },
+      { id: 'Spread', nk: 'Spread', nt: 'Spread each company', nd: 'Adjust · LTM · multiples →' },
+      { id: 'Bench',  nk: 'Bench',  nt: 'Benchmark the set', nd: 'Returns · leverage · growth →' },
+      { id: 'Output', nk: 'Output', nt: 'Output summary', nd: 'Multiples → value the target', out: true },
+    ],
+  };
+</script>
+<script src="js/comps-data.js"></script>
+<script src="js/comps-notes.js"></script>
+<script src="js/workbook.js"></script>
+<script src="js/comps-engine.js"></script>
+<script src="js/comps-model.js"></script>
+<script src="js/comps-tutor.js"></script>
+<script src="js/comps-practice.js"></script>
+<script src="js/comps-theory.js"></script>
+</body>
+</html>
