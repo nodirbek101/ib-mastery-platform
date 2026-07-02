@@ -9,8 +9,7 @@ It runs entirely in your browser — no install, no internet required (an intern
 connection only improves the fonts on first load).
 
 ## What's here
-- **`index.html`** — landing hub with all six models (DCF live; the other five are
-  the next builds).
+- **`index.html`** — landing hub with the two live models (DCF and Comparable Companies).
 - **`dcf.html`** — the flagship **Discounted Cash Flow** module:
   - **Theory** — Rosenbaum's five-step method with interactive widgets
     (drag WACC → watch enterprise value move; see the present value of each cash flow).

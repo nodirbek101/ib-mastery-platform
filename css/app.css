@@ -171,7 +171,7 @@ h1,h2,h3,h4 { font-family: var(--f-display); font-weight: 500; line-height: 1.04
 /* ============================ MODEL CARDS ============================== */
 .sec-head { max-width: 60ch; margin-bottom: 56px; }
 .sec-head h2 { font-size: clamp(2rem, 4vw, 3.1rem); margin: 16px 0 18px; }
-.grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.grid-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 .card {
   position: relative; background: var(--paper-2); border: 1px solid var(--line-dk); border-radius: var(--r-lg);
   padding: 30px 28px 26px; overflow: hidden; transition: transform .35s var(--ease), box-shadow .35s, border-color .35s;
